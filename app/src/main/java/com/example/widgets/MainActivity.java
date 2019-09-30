@@ -22,16 +22,21 @@ public class MainActivity extends AppCompatActivity {
 
         prf = getPreferences(MODE_PRIVATE);
 
-        aSwitch = findViewById(R.id.switch1);
+        // ------- SWITCH
 
+        aSwitch = findViewById(R.id.switch2);
         aSwitch.setChecked(prf.getBoolean("SW", false));
-
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 prf.edit().putBoolean("SW", isChecked).apply();
             }
         });
+
+        // ------- TOGGLE BUTTON
+
+
+
 
 
     }
