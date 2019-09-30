@@ -2,11 +2,16 @@ package com.example.widgets;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences prf;
 
     Switch aSwitch;
 
@@ -15,10 +20,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        prf = getPreferences(MODE_PRIVATE);
+
+        aSwitch = findViewById(R.id.switch1);
+
+        aSwitch.setChecked(prf.getBoolean("SW", false));
+
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                prf.edit().putBoolean("SW", isChecked).apply();
             }
         });
 
